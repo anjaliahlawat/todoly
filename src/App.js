@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import Login from './component/Login'
+import './ssss/App.scss';
+import Router from './Router'
 // import configureStore from './store/configureStore'
 // import { Provider } from 'react-redux'
 // import Todo from './component/Todo';
@@ -9,7 +9,7 @@ import Login from './component/Login'
 
 function App() {
   return (
-    <Login />
+    <Router />
     // <Provider value={store}>
     //     <Todo />
     // </Provider>

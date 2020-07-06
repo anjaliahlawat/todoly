@@ -1,0 +1,23 @@
+@import "./config";
+@import "./login";
+@import "./register";
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration-line: none;
+}
+
+img {
+  object-fit: contain;
+}
+
+.container-fluid {
+  padding: 0px;
+}
+
+a:hover {
+  text-decoration: none;
+}

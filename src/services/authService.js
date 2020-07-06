@@ -1,7 +1,21 @@
 import http from './httpService'
 
-const apiEndPoint = '/user'
+const apiEndPoint = '/auth'
 
-export function login(formData) {
-  return http.post(apiEndPoint, formData)
+export async function login(formData) {
+  const res = await http.post(apiEndPoint, formData)
+  localStorage.setItem("userName", res.data.users.userName)
+  localStorage.setItem("email", formData.email)
+  console.log(res.data)
+}
+
+export function logout(){
+  localStorage.clear()
+}
+
+export function getUser(){
+  return  {
+    userEmail : localStorage.getItem("email"),
+    userName : localStorage.getItem("userName")
+  }
 }

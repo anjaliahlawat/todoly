@@ -12,8 +12,8 @@ function Login(props) {
       'email' : email,
       'password' : password
     }
-    const res = await login(formData)
-    console.log(res.data)
+    await login(formData)
+    window.location = '/home'
   }
 
   return (
