@@ -1,6 +1,6 @@
 import React from 'react';
-import './ssss/App.scss';
-import Router from './Router'
+import './sass/App.scss';
+import Router from './component/Router'
 // import configureStore from './store/configureStore'
 // import { Provider } from 'react-redux'
 // import Todo from './component/Todo';

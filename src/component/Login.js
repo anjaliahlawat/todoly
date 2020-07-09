@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import {Form, FormGroup, Col, Input, Label} from 'reactstrap';
+import {Form, FormGroup, Col, Input} from 'reactstrap';
 import { login } from '../services/authService';
+import { Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Login(props) {
   const [email, setEmail] = useState('')
@@ -17,23 +19,42 @@ function Login(props) {
   }
 
   return (
-    <div>
+    <div className="login">
+      <div className="header">
+          <Image src={require('../assets/header.PNG')} />
+      </div>
+      
       <Form onSubmit={onSubmit}>
           <FormGroup row>
-                <Label htmlFor="email" md={12}>Email</Label>
                 <Col md={12}>
-                    <Input type="email" className="login-field" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <Input 
+                        type="email" 
+                        className="login-field"
+                        placeholder={'Email'} 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
                 </Col>
             </FormGroup>
             <FormGroup row>
-                <Label htmlFor="email" md={12}>Password</Label>
                 <Col md={12}>
-                    <Input type="password" className="login-field" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <Input 
+                        type="password" 
+                        className="login-field" 
+                        placeholder={'Password'}
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </Col>
             </FormGroup>
-            <button>Submit</button>
-      </Form>
-        
+            <Col md={12}>
+                <button>Login</button>
+            </Col>
+            <Col md={12} className="footer-text">
+                <span>Create your account for free.</span>
+                <Link to={'/register'}> Sign up Now</Link>
+            </Col>
+      </Form>        
     </div>
   );
 }

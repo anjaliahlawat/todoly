@@ -3,7 +3,7 @@ import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import Login from './Login'
 import Register from './Register'
 import ProtectedRoute from "./common/ProtectedRoute";
-import Modules from "./ProtectedRoute";
+import Module from "./Modules";
 
 function Router(props) {
   return (
@@ -12,7 +12,8 @@ function Router(props) {
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
           <ProtectedRoute 
-            path='/:module' component={Modules} />
+            path='/:module' component={Module} />
+            <Redirect to='/login' />
         </Switch>
     </BrowserRouter>
   );
