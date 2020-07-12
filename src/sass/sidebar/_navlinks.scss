@@ -1,0 +1,19 @@
+.navlinks{
+  ul {
+    padding: 0;
+     li{
+       padding: 0.6rem;
+       
+       a>span{
+          font-size: 14px;
+          color: $link-color;
+          margin-left: 12px;
+       }
+
+        &.active{
+           background: $secondary-color;
+           border-left: 4px solid $link-color
+        }
+     }
+  }
+}

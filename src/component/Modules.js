@@ -4,11 +4,11 @@ import RenderedComponent from './RenderedComponent';
 
 function Module(props) {
   return (
-    <div className="container-fluid wrapper">
+    <div className="wrapper">
        <Sidebar
           linkName={props.match.params.module}
         /> 
-        <div id="content">
+        <div className="content">
             <RenderedComponent 
               module={props.match.params.module}/>
         </div>

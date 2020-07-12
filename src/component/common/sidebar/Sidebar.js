@@ -1,10 +1,17 @@
 import React from 'react';
+import { Image } from 'react-bootstrap';
+import AccountDiv from './AccountDiv';
+import AllLinks from './AllLinks';
 
-function Sidebar(props) {
+const Sidebar =({linkName}) => {
   return (
-    <div>
-      
-    </div>
+    <nav className="sidebar">
+        <div className="sidebar-header">
+            <Image src={require('../../../assets/iconImage.PNG')} thumbnail />
+        </div>
+        <AccountDiv />
+        <AllLinks linkName={linkName}/>
+    </nav>
   );
 }
 

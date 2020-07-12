@@ -1,6 +1,8 @@
 @import "./config";
 @import "./login";
 @import "./register";
+@import "./modules/modules";
+@import "./sidebar/sidebar";
 
 body {
   overflow-x: hidden;
@@ -20,4 +22,8 @@ img {
 
 a:hover {
   text-decoration: none;
+}
+
+ul {
+   list-style: none;
 }
