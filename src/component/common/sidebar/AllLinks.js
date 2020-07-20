@@ -14,6 +14,7 @@ const AllLinks =({ activeClass, linkName }) => {
           <CustomLink 
               linkName ={linkName}
               givenLink ={'captured'}
+              sublink={'professional'}
               title={'Captured'}
           />
           <CustomLink 

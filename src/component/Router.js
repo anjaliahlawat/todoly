@@ -12,6 +12,8 @@ function Router(props) {
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
           <ProtectedRoute 
+            path='/:module/:folder' component={Module} />
+          <ProtectedRoute 
             path='/:module' component={Module} />
             <Redirect to='/login' />
         </Switch>

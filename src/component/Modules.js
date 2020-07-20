@@ -9,8 +9,10 @@ function Module(props) {
           linkName={props.match.params.module}
         /> 
         <div className="content">
-            <RenderedComponent 
-              module={props.match.params.module}/>
+            <RenderedComponent  
+              module={props.match.params.module}
+              folder={props.match.params.folder}
+            />
         </div>
     </div>
   );

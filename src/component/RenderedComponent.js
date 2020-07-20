@@ -5,7 +5,7 @@ import Organized from './Organized/Organized'
 import References from './References/References'
 import Settings from './Settings/Settings'
 
-function RenderedComponent({module}) {
+function RenderedComponent({module, folder}) {
 
   if(module === 'home')
     return (
@@ -13,7 +13,7 @@ function RenderedComponent({module}) {
     )
   else if(module === 'captured')
     return (
-      <Captured />
+      <Captured folder={folder}/>
     )
   else if(module === 'organized')
     return (
