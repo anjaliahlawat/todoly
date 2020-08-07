@@ -1,0 +1,25 @@
+.captured_body{
+  margin-top: 30px;
+
+  .captured_tabs{
+    a{
+      color: $inactive-text;
+      font-weight: 500;
+      font-size: 14px;
+  
+       &.active{
+          color: $link-color;
+          font-weight: 700;
+       }
+    }
+  }
+  
+  .captured_table{
+      background: white;
+      margin: 0 1rem;
+      width: 97%;
+      border: 1px solid white;
+      border-radius: 5px;
+      min-height: 485px;
+  }
+}

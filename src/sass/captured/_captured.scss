@@ -1,0 +1,20 @@
+@import './capturedTable';
+
+.captured{
+  .save-btn{
+    position: fixed;
+    right: 18px;
+    top: 15px;
+    background: $green-color;
+    border: 1px solid $green-color;
+    border-radius: 15px;
+    color: white;
+    font-size: 13px;
+    padding: 0.3rem 1rem;
+
+    &:hover{
+      background: white;
+      color: $green-color;
+    }
+  }
+}

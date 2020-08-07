@@ -7,7 +7,7 @@ const Sidebar =({linkName}) => {
   return (
     <nav className="sidebar">
         <div className="sidebar-header">
-            <Image src={require('../../../assets/iconImage.PNG')} thumbnail />
+            <Image src={require('../../../assets/iconImage.PNG')} />
         </div>
         <AccountDiv />
         <AllLinks linkName={linkName}/>

@@ -26,7 +26,7 @@ function Login(props) {
       
       <Form onSubmit={onSubmit}>
           <FormGroup row>
-                <Col md={12}>
+                <Col lg={6} className="offset-lg-3">
                     <Input 
                         type="email" 
                         className="login-field"
@@ -37,7 +37,7 @@ function Login(props) {
                 </Col>
             </FormGroup>
             <FormGroup row>
-                <Col md={12}>
+                <Col lg={6} className="offset-lg-3">
                     <Input 
                         type="password" 
                         className="login-field" 
@@ -47,10 +47,10 @@ function Login(props) {
                     />
                 </Col>
             </FormGroup>
-            <Col md={12}>
+            <Col lg={6} className="offset-lg-3">
                 <button>Login</button>
             </Col>
-            <Col md={12} className="footer-text">
+            <Col lg={6} className="footer-text offset-lg-3">
                 <span>Create your account for free.</span>
                 <Link to={'/register'}> Sign up Now</Link>
             </Col>

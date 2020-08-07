@@ -27,6 +27,11 @@ input:focus {
   outline: $primary-color;
 }
 
+.row{
+  width: 100%;
+  margin: 0;
+}
+
 @mixin  form-input {
   width: 280px;
   height: 45px;

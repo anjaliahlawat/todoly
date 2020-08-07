@@ -19,7 +19,7 @@
    }
 
    form{
-     div{
+     .col-lg-6{
         text-align: center;
         input{
           @include form-input;

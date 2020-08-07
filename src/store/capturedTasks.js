@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
 import { apiCallBegan} from './api'
 import moment from 'moment'
+import { getUser } from "../services/authService";
 
 const slice = createSlice({
    name: 'capturedTasks',
@@ -41,18 +43,17 @@ const url = '/captured'
 
 export const loadTasks = () => (dispatch, getState) => {
    const { lastFetch } = getState().entities.capturedTasks
-
+   
    const diffInMinutes = moment().diff(moment(lastFetch), 'minutes')
 
    if(diffInMinutes < 10) return
 
-   dispatch(
+   return dispatch(
       apiCallBegan({
          url: url + '/list',
          method: 'post',
          data: {
-            user: '5efd92d56dbd096c280eb2ee',
-            category: 'professional'
+            user: getUser().userEmail
          },
          onStart:  tasksRequested.type,
          onSuccess: tasksReceived.type,
@@ -61,9 +62,19 @@ export const loadTasks = () => (dispatch, getState) => {
    )
 }
 
-export const addTask = task => apiCallBegan({
-   url: url + 'create',
+export const addTask = tasks => apiCallBegan({
+   url: url + '/create',
    method: 'post',
-   data: task,
+   data: {tasks: tasks, user: getUser().userEmail},
    onSuccess: taskAdded.type
 })
+
+export const getProfessionalTasks =createSelector(
+    state => state.entities.capturedTasks,
+    capturedTasks => capturedTasks.list.filter(task => task.category === 'professional')
+  );
+
+export const getPersonalTasks =createSelector(
+    state => state.entities.capturedTasks,
+    capturedTasks => capturedTasks.list.filter(task => task.category === 'personal')
+  );
