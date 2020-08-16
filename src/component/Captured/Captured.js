@@ -1,41 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import CapturedTable from './CapturedTable';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadTasks, getProfessionalTasks, getPersonalTasks, addTask } from '../../store/capturedTasks';
+import { loadTasks, getProfessionalTasks, getPersonalTasks, addTask, deleteTask } from '../../store/capturedTasks';
 
-function Captured({ folder }) {
+function Captured({ folder, notify }) {
   const [newTasks, setNewTasks] = useState([])
   const dispatch = useDispatch()
-  const professionalTasks = useSelector(getProfessionalTasks)
-  const personalTasks =  useSelector(getPersonalTasks)
+  let professionalTasks = useSelector(getProfessionalTasks)
+  let personalTasks =  useSelector(getPersonalTasks)
+  let [unsavedTask, setUnsavedtask] = useState([])
 
   useEffect(() => {
-      dispatch(loadTasks(folder))  
+      dispatch(loadTasks(folder)) 
+      console.log(professionalTasks)
   }, [professionalTasks, personalTasks])
 
-  const addTasks = () => { 
+  const addTasks = (type) => { 
     const newTask = {
         desc: '',
         category: folder,
-        date: getDate(),
+        date: new Date(),
     }
     setNewTasks([...newTasks, newTask])
   }
 
-  const getDate = () => {
-     const d1 = new Date()
-     let date = d1.getDate()
-     let month = d1.getMonth()+ 1
-     let year = d1.getFullYear()
-
-     let month2 = month.toString().length === 1 ? '0' + month : month
-
-     let finalStr = date + '-' + month2 + '-' + year
-     return finalStr
-  }
-
-  const saveData = () => {
-    dispatch(addTask(newTasks))
+  const saveData = async () => {
+      if(newTasks.length >0){
+        const verifiedTask = verifyTask()
+        await dispatch(addTask(verifiedTask))
+        notify('success', `${verifiedTask.length} task saved.`)
+        setNewTasks([])         
+      }
+      else{
+          notify('info', "Oops! Looks like you forgot to add a task.")
+      }
   }
 
   const onTaskInput =(e, index) => {
@@ -44,7 +42,24 @@ function Captured({ folder }) {
      temp_arr[index][name] = value
      setNewTasks([...temp_arr])
   }
-  
+
+  const handleAction=(task) => {
+      console.log(task)
+  }
+
+  const deleteTasks= async (task) => {
+      await dispatch(deleteTask(task))
+  }
+
+  const verifyTask = () => {
+     let newArr = []
+     for(let i=0; i < newTasks.length; i++){
+        if(newTasks[i].desc)
+            newArr.push(newTasks[i])
+     }
+     return newArr
+  }
+
   return (
     <div className="container-fluid captured">
         <div className="row">
@@ -52,13 +67,15 @@ function Captured({ folder }) {
             <button className="save-btn" onClick={saveData}>Save</button>
         </div>
         <div className="row">
-            <CapturedTable 
-                newTasks={newTasks}
+            <CapturedTable
+                newTasks={newTasks} 
                 tasks={folder === 'professional' ? professionalTasks : personalTasks}
                 onTaskInput={onTaskInput}
                 folder={folder}
-            /> 
-        </div>            
+                handleAction={handleAction}
+                deleteTask={deleteTasks}
+            />           
+        </div>  
     </div>
   );
 }

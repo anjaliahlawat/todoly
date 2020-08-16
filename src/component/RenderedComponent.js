@@ -5,27 +5,27 @@ import Organized from './Organized/Organized'
 import References from './References/References'
 import Settings from './Settings/Settings'
 
-function RenderedComponent({module, folder}) {
+function RenderedComponent({module, folder, notify}) {
 
   if(module === 'home')
     return (
-      <Home />
+      <Home notify={notify} />
     )
   else if(module === 'captured')
     return (
-      <Captured folder={folder}/>
+      <Captured folder={folder} notify={notify}/>
     )
   else if(module === 'organized')
     return (
-      <Organized />
+      <Organized notify={notify} />
     )
   else if(module === 'references')
     return (
-      <References />
+      <References notify={notify} />
     )
   else if(module === 'settings')
     return (
-      <Settings />
+      <Settings notify={notify} />
     )
   else
       window.location = '/home'

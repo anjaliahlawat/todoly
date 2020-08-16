@@ -1,8 +1,8 @@
 import axios from 'axios'
 import * as actions from '../api'
+import { toastify } from '../../common-functions/notify'
 
 const api = ({dispatch}) => next => async action => {
-    console.log(action)
     if(action.type !== actions.apiCallBegan.type) return next(action)
     
     const {url, method, data, onStart, onSuccess, onError} = action.payload
@@ -29,6 +29,7 @@ const api = ({dispatch}) => next => async action => {
         dispatch(actions.apiCallFailed(e.message))
         //specific
         if(onError) dispatch({ type: onError, payload: e.message})
+        toastify('error', 'Error Occurred! Try again')
     }
 }
 

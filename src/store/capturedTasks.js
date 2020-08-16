@@ -24,13 +24,23 @@ const slice = createSlice({
          capturedTasks.loading = false
       },
       taskAdded : (capturedTasks, action) => {
-         capturedTasks.list.push(action.payload)
+         const {result, data} = action.payload
+         if(result === 'success'){
+            capturedTasks.list = [...capturedTasks.list, ...data]
+         }
+      },
+      taskDeleted : (capturedTasks, action) => {
+         const task = action.payload
+         console.log(task)
+         console.log(capturedTasks.list.indexOf(task))
+         capturedTasks.list.splice(capturedTasks.list.indexOf(task), 1)
       }
    }
 })
 
 export const { 
-   taskAdded, 
+   taskAdded,
+   taskDeleted, 
    tasksReceived,
    tasksRequested,
    tasksRequestFailed
@@ -65,8 +75,15 @@ export const loadTasks = () => (dispatch, getState) => {
 export const addTask = tasks => apiCallBegan({
    url: url + '/create',
    method: 'post',
-   data: {tasks: tasks, user: getUser().userEmail},
+   data: {tasks: JSON.stringify(tasks), user: getUser().userEmail},
    onSuccess: taskAdded.type
+})
+
+export const deleteTask = task => apiCallBegan({
+   url: url + '/delete',
+   method: 'post',
+   data: {task_id : task._id},
+   onSuccess: taskDeleted.type
 })
 
 export const getProfessionalTasks =createSelector(
