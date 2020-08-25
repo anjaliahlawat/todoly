@@ -31,8 +31,6 @@ const slice = createSlice({
       },
       taskDeleted : (capturedTasks, action) => {
          const task = action.payload
-         console.log(task)
-         console.log(capturedTasks.list.indexOf(task))
          capturedTasks.list.splice(capturedTasks.list.indexOf(task), 1)
       }
    }

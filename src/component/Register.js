@@ -27,7 +27,7 @@ function Register(props) {
         </div>
         <Form onSubmit={onSubmit}>
           <FormGroup row>
-                <Col md={12}>
+                <Col md={6} className="offset-lg-3">
                     <Input type="text" 
                         className="register-field" 
                         placeholder={'Username'}
@@ -37,7 +37,7 @@ function Register(props) {
                 </Col>
             </FormGroup>
           <FormGroup row>
-                <Col md={12}>
+                <Col md={6} className="offset-lg-3">
                     <Input 
                         type="email" 
                         className="register-field" 
@@ -48,7 +48,7 @@ function Register(props) {
                 </Col>
             </FormGroup>
           <FormGroup row>
-              <Col md={12}>
+              <Col md={6} className="offset-lg-3">
                   <Input type="password" 
                       className="register-field"
                       placeholder={'Password'} 
@@ -57,7 +57,7 @@ function Register(props) {
                   />
               </Col>
           </FormGroup>
-          <Col md={12}>
+          <Col md={6} className="offset-lg-3">
                 <button>Sign up</button>
             </Col>
             <Col md={12} className="footer-text">

@@ -12,7 +12,6 @@ function Captured({ folder, notify }) {
 
   useEffect(() => {
       dispatch(loadTasks(folder)) 
-      console.log(professionalTasks)
   }, [professionalTasks, personalTasks])
 
   const addTasks = (type) => { 
