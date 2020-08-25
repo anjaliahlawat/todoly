@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan} from './api'
+import { setUser } from "../services/authService";
 
 const slice = createSlice({
   name: 'authentication',
@@ -14,10 +15,11 @@ const slice = createSlice({
          authentication.user= action.payload
     },
     login_success: (authentication, action) => {
-        const {result, data} = action.payload
+        const {result, user} = action.payload
         if(result === 'success'){
           authentication.loggedIn = true
-          authentication.user= data
+          authentication.user= user
+          setUser(user)
           window.location = '/home'
         }
         else{
@@ -47,7 +49,7 @@ export const login = user => apiCallBegan({
     url: url,
     method: 'post',
     data: user,
-    onStart: login_request,
+    onStart: login_request.type,
     onSuccess: login_success.type,
     onError: login_failed.type
 })

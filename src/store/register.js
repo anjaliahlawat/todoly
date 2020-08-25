@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan} from './api'
+import { setUser } from "../services/authService";
 
 const slice = createSlice({
   name: 'register',
@@ -10,13 +11,13 @@ const slice = createSlice({
   reducers: {
     register_request: (register, action) => {
       register.registering = true
-      register.user= action.payload
     },
     register_success: (register, action) => {
-        const {result, data} = action.payload
+      const {result, user} = action.payload
         if(result === 'success'){
           register.registering = ''
-          register.user= data
+          register.user= user
+          setUser(user)          
           window.location = '/home'
         }
         else{
@@ -45,7 +46,7 @@ export const register = user => apiCallBegan({
   url: url,
   method: 'post',
   data: user,
-  onStart: register_request,
+  onStart: register_request.type,
   onSuccess: register_success.type,
   onError: register_failed.type
 })

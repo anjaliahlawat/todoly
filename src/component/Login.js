@@ -3,14 +3,13 @@ import {Form, FormGroup, Col, Input} from 'reactstrap';
 // import { login } from '../services/authService';
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getLoginStatus, login} from '../store/login';
+import { useDispatch} from 'react-redux';
+import {  login} from '../store/login';
 
 function Login(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
-  let loggedIn = useSelector(state => state.entities.authentication.loggedIn)
 
   const onSubmit = async (event) => {
     event.preventDefault()

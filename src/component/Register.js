@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { register } from '../services/users';
 import {Form, FormGroup, Col, Input} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
+import { useDispatch} from 'react-redux';
+import { register} from '../store/register';
 
 function Register(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [userName, setUserName] = useState('')
+  const dispatch = useDispatch()
 
   const onSubmit = async (event) => {
     event.preventDefault()
@@ -16,8 +18,7 @@ function Register(props) {
       'password' : password,
       'name' : userName,
     }
-    await register(formData)
-    window.location='/home'
+    await dispatch(register(formData))
   }
 
   return (
