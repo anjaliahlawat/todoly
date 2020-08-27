@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan} from './api'
-import { setUser } from "../services/authService";
+import { setUser, clearOut } from "../services/authService";
 
 const slice = createSlice({
   name: 'authentication',
@@ -31,6 +31,10 @@ const slice = createSlice({
         authentication.loggingIn = false
         authentication.loggedIn = false
         authentication.user= {}
+    },
+    logout : (authentication, action)=> {
+        clearOut()
+        window.location = '/login'
     }
   }
 })
@@ -38,7 +42,8 @@ const slice = createSlice({
 export const { 
   login_request,
   login_success, 
-  login_failed
+  login_failed,
+  logout
 } = slice.actions  
 
 export default slice.reducer

@@ -10,4 +10,14 @@
         height: 47px;
      }
    }
+
+   .logout-btn {
+       background: none;
+       border: none;
+       color: $primary-color;
+       position: absolute;
+       bottom: 10px;
+       left: 30px;
+       font-weight: 600;
+   }
 }

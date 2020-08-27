@@ -1,4 +1,4 @@
-export function logout(){
+export function clearOut(){
   localStorage.clear()
 }
 
